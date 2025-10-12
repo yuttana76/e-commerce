@@ -1,10 +1,89 @@
 "use client"
 
 import { ProductType } from "@/types"
+import { ShoppingCart } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { useState } from "react"
 
 const ProductCard = ({product}:{product:ProductType}) => {
+
+  const [productTypes,setProductTypes] = useState({
+    size: product.sizes[0],
+    color: product.colors[0]
+  })
+
+  const handleProductType = ({type,value}:{type:"size"| "color",value:string}) => {
+    setProductTypes((prev) => ({
+      ...prev,
+      [type]: value
+    }))
+  }
+
   return (
-    <div>ProductCard</div>
+    <div className="shadow-lg rounded-lg overflow-hidden">
+      {/* IMAGE */}
+      <Link  href={`/product/${product.id}`}>
+       <div className="relative aspect-[2/3]">
+          <Image src={product.images[productTypes.color]} 
+            alt={product.name} 
+            fill 
+            className="object-cover hover:scale-105 transition-all duration-300" 
+            />
+       </div>
+      </Link>
+
+      {/* DETAILS */}
+      <div className="flex flex-col gap-4 p-4">
+        <h1 className="font-medium">{product.name}</h1>
+        <p className="text-sm text-gray-500">{product.shortDescription}</p>
+        {/* PRODUCT TYPE */}
+        <div className="flex items-center gap-4 text-xs">
+          {/* SIZE */}
+          <div className="flex flex-col gap-1">
+            <span className="text-gray-800">Size:</span> 
+            <select name='size' id='size' className="ring ring-gray-300 rounded-md px-2 py-1"
+              onChange={(e) =>
+                handleProductType({ type: "size", value: e.target.value })
+              }
+            >
+              {product.sizes.map((size) => (
+                <option key={size} value={size}
+                >{size.toUpperCase()}</option>
+              ))}
+            </select>
+            
+          </div>
+          {/* COLOR */}
+          <div className="">
+            <span className="text-gray-800">Color:</span> 
+            <div className="flex items-center gap-2 mt-1">
+              {product.colors.map((color) => (
+
+                <div key={color} 
+                  className={`p-0.5 border-2 ${productTypes.color === color ? "border-gray-400" : "border-gray-200"} rounded-full cursor-pointer`}
+                  title={color}
+                  onClick={() => handleProductType({type: "color", value: color})}
+                >
+                  <div className={`w-5 h-5 rounded-full cursor-pointer`} 
+                  style={{backgroundColor: color}} ></div>
+
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* PRICE & ADD TO CART BUTTON */}
+        <div className="flex items-center justify-between">
+            <span className="font-medium">${product.price.toFixed(2)}</span>
+            <button className="ring-1 ring-gray-200 shadow-lg rounded-md px-2 py-1 text-sm cursor-pointer hover:bg-gray-500 hover:text-white transition-all duration-300 flex items-center gap-1">
+              <ShoppingCart className="w-4 h-4" />
+              Add to Cart
+            </button>
+          </div>
+      </div>
+    </div>
   )
 }
 

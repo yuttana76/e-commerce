@@ -62,8 +62,13 @@ const Categories = () => {
 
     const handleChange = (value: string|null) => {
     
+        //Get the current search params
         const params = new URLSearchParams(searchParams);
+
+        //If the value is "all", remove the category param
         params.set("category", value || "all");
+        
+        //Else, set the category param to the selected value
         router.push(`${pathname}?${params.toString()}`,{scroll: false});
     };
 
