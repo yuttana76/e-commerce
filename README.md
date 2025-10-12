@@ -10,14 +10,15 @@ From Lama Dev
 Local 
 /Users/mpamdev03/projects/lama@dev/E-Commerce
 ```
->npm i
->npm run dev
+npm i
+npm run dev
 ```
 
 ### Install Lucide(14:12) (Or you can use another icon lib etc. fontawesome)
 https://lucide.dev/guide/
 Lucide is an open-source icon library
 ```
->npm install lucide-react
+npm install lucide-react
 ```
 
+TIME: 42:49
