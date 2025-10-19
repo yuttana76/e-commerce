@@ -22,3 +22,6 @@ npm install lucide-react
 ```
 
 TIME: 42:49
+
+### Install new lib (React hookform,zod)
+>npm install react-hook-form zod @hookform/resolvers

@@ -3,6 +3,7 @@ import React from 'react'
 import Categories from './Categories';
 import ProductCard from './ProductCard';
 import Link from 'next/link';
+import Fillter from './Fillter';
 
 // TEMPORARY
 const products: ProductsType = [
@@ -116,10 +117,13 @@ const products: ProductsType = [
     },
   ];
 
-const ProductList = ({category}:{category:string}) => {
+const ProductList = ({category,params}:{category:string,params:"homepage" | "products" }) => {
+  
   return (
     <div className='w-full'>
         <Categories />
+      {params === "products" && <Fillter/> }
+
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8'>
             {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
