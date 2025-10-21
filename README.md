@@ -24,4 +24,20 @@ npm install lucide-react
 TIME: 42:49
 
 ### Install new lib (React hookform,zod)
+https://www.npmjs.com/package/@hookform/resolvers
+
 >npm install react-hook-form zod @hookform/resolvers
+
+### Install zustand
+
+https://zustand.docs.pmnd.rs/getting-started/introduction
+
+>npm install zustand
+
+https://zustand.docs.pmnd.rs/integrations/immer-middleware
+
+>npm install zustand/middleware
+
+### react-toastify
+https://www.npmjs.com/package/react-toastify
+>npm i react-toastify
